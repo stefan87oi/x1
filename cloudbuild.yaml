@@ -19,3 +19,4 @@ steps:
   - 'managed'
 images:
 - 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA
+]
