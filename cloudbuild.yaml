@@ -19,5 +19,4 @@ steps:
   - 'managed'
 images:
 - 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA'
-options:
-logging: CLOUD_LOGGING_ONLY
+ enum(LoggingMode)
