@@ -11,5 +11,4 @@ steps:
   args: ['run', 'deploy', 'SERVICE1', '--image', 'gcr.io/wave1-skozlov/IMAGE1', '--region', 'REGION']
 images:
 - gcr.io/wave1-skozlov/IMAGE1
-
  logging: CLOUD_LOGGING_ONLY
