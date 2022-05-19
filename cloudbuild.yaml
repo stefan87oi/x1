@@ -19,4 +19,6 @@ steps:
   - 'managed'
 images:
 - 'gcr.io/$PROJECT_ID/demo-app:$COMMIT_SHA'
-logging: enum(LoggingMode)
+options:
+ machineType: 'E2_HIGHCPU_8'
+logging: 'CLOUD_LOGGING_ONLY'
