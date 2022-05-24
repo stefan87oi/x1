@@ -1,6 +1,5 @@
-FROM python:3.7-slim
-RUN pip install flask
+FROM python:3.10-slim-buster
 WORKDIR /app
-COPY app.py /app/app.py
-ENTRYPOINT ["python"]
-CMD ["/app/app.py"]
+COPY requirements.txt  requirements.txt 
+RUN pip3 install -r   requirements.txt 
+CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
