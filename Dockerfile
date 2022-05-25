@@ -1,5 +1,22 @@
-FROM python:3.10-slim-buster
+FROM python
+
+
+
+RUN apt-get update -y  && \
+    apt-get install -y python3-pip python-dev
+
+RUN pip install --upgrade pip
+
+
+
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
-COPY requirements.txt  requirements.txt 
-RUN pip3 install -r   requirements.txt 
-CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+RUN pip3 install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "main.py" ]
