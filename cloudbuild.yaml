@@ -1,6 +1,7 @@
 ---
 steps:
 - name : 'gcr.io/cloud-builders/docker'
-- args : ['env:
-  env :  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'', '-t', 'gcr.io/wave1-skozlov/myimage', '.']
+- args : ['build', '-t', 'gcr.io/wave1-skozlov/myimage1', '.'] 
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'
