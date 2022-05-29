@@ -1,8 +1,23 @@
----
 steps:
-- name : 'gcr.io/cloud-builders/docker'
-- args : ['build', '-t', 'gcr.io/wave1-skozlov/myimage1', '.'] 
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/wave1-skozlov/myimage1', '.'] 
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
   - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'
-logsBucket: 'gs://bucket3oi'
+options:
+logging: GCS_ONLY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
