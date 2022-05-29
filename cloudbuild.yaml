@@ -5,5 +5,4 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
   - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'
-options:
-logging: CLOUD_LOGGING_ONLY
+logsBucket: 'gs://bucket3oi
