@@ -14,7 +14,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - uses: github-account@wave1-skozlov.iam.gserviceaccount.com    
+    - uses: github-account@wave1-skozlov.iam.gserviceaccount.com
       with:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         project_id: ${{ env.PROJECT_ID }}
