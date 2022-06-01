@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-west1-docker.pkg.dev/${PROJECT_ID}/wave1-skozlov/hello-repo', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/${PROJECT_ID}/wave1-skozlov/repo1', '.']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
   - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'
