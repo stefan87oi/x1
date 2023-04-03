@@ -1,0 +1,64 @@
+#https://linux-training.be/linuxsys.pdf
+
+
+echo "Chapter 1. introduction to processes"
+sleep 5 ;
+echo "1.1. terminology"
+echo "1.1.1. process"
+
+echo "A process is compiled source code that is currently running on the system."
+echo "1.1.2. PID"
+echo "All processes have a process id or PID."
+echo "1.1.3. PPID"
+sleep 5 ;
+echo "Every process has a parent process (with a PPID). The child process is often started by the
+parent process."
+sleep 5 ;
+echo "1.1.4. init"
+echo "The init process always has process ID 1. The init process is started by the kernel itself so
+technically it does not have a parent process. init serves as a foster parent for orphaned
+processes."
+sleep 5 ;
+echo "1.1.5. kill"
+echo "When a process stops running, the process dies, when you want a process to die, you kill it."
+echo "1.1.6. daemon"
+echo  "Processes that start at system startup and keep running forever are called daemon processes
+or daemons. These daemons never die"
+sleep 5
+echo "1.1.7. zombie"
+echo  "When a process is killed, but it still shows up on the system, then the process is referred to
+as zombie. You cannot kill zombies, because they are already dead."
+sleep 5 ;
+echo "1.2. basic process management"
+echo "1.2.1. $ $ and $ PPID"
+
+echo "Some shell environment variables contain information about processes. The $ $ variable will
+hold your current process ID, and $ PPID contains the parent PID. Actually $ $ is a shell
+parameter and not a variable, you cannot assign a value to it."
+
+sleep 5 ;
+
+echo "Below we use echo to display the values of $ $ and $ PPID. "
+
+echo  " [user@RHEL4b ~]$ echo $ $   $ PPID
+4224 4223 " 
+
+sleep 5 ;
+
+echo "1.2.2. pidof"
+
+echo "You can find all process id's by name using the pidof command."
+
+echo "user@rhel53 ~# pidof mingetty
+2819 2798 2797 2796 2795 2794
+"
+echo "1.2.3. parent and child"
+sleep 5 ;
+echo "Processes have a parent-child relationship. Every process has a parent process.
+When starting a new bash you can use echo to verify that the pid from before is the ppid
+of the new shell. The child process from above is now the parent process."
+
+echo "[user@RHEL4b ~]$ bash
+[user@RHEL4b ~]$ echo $ $ $ PPID
+4812 4224
+"
