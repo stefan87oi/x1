@@ -1,4 +1,7 @@
 #https://linux-training.be/linuxsys.pdf
+# Hello World Program in Bash Shell
+
+# Hello World Program in Bash Shell
 
 
 echo "Chapter 1. introduction to processes"
@@ -10,25 +13,25 @@ echo "A process is compiled source code that is currently running on the system.
 echo "1.1.2. PID"
 echo "All processes have a process id or PID."
 echo "1.1.3. PPID"
-sleep 5 ;
+read -p " press enter to continue" ;
 echo "Every process has a parent process (with a PPID). The child process is often started by the
 parent process."
-sleep 5 ;
+
 echo "1.1.4. init"
 echo "The init process always has process ID 1. The init process is started by the kernel itself so
 technically it does not have a parent process. init serves as a foster parent for orphaned
 processes."
-sleep 5 ;
+ read -p " press enter to continue" ;
 echo "1.1.5. kill"
 echo "When a process stops running, the process dies, when you want a process to die, you kill it."
 echo "1.1.6. daemon"
 echo  "Processes that start at system startup and keep running forever are called daemon processes
 or daemons. These daemons never die"
-sleep 5
+read -p " press enter to continue" ;
 echo "1.1.7. zombie"
 echo  "When a process is killed, but it still shows up on the system, then the process is referred to
 as zombie. You cannot kill zombies, because they are already dead."
-sleep 5 ;
+read -p " press enter to continue" ;
 echo "1.2. basic process management"
 echo "1.2.1. $ $ and $ PPID"
 
@@ -36,14 +39,14 @@ echo "Some shell environment variables contain information about processes. The 
 hold your current process ID, and $ PPID contains the parent PID. Actually $ $ is a shell
 parameter and not a variable, you cannot assign a value to it."
 
-sleep 5 ;
+read -p " press enter to continue" ;
 
 echo "Below we use echo to display the values of $ $ and $ PPID. "
 
 echo  " [user@RHEL4b ~]$ echo $ $   $ PPID
 4224 4223 " 
 
-sleep 5 ;
+read -p " press enter to continue" ;
 
 echo "1.2.2. pidof"
 
@@ -53,7 +56,8 @@ echo "user@rhel53 ~# pidof mingetty
 2819 2798 2797 2796 2795 2794
 "
 echo "1.2.3. parent and child"
-sleep 5 ;
+read -p " press enter to continue" ;
+
 echo "Processes have a parent-child relationship. Every process has a parent process.
 When starting a new bash you can use echo to verify that the pid from before is the ppid
 of the new shell. The child process from above is now the parent process."
@@ -62,3 +66,215 @@ echo "[user@RHEL4b ~]$ bash
 [user@RHEL4b ~]$ echo $ $ $ PPID
 4812 4224
 "
+read -p " press enter to continue" ;
+echo "Typing exit will end the current process and brings us back to our original values for $ $
+and $ PPID." 
+
+echo "[paul@RHEL4b ~]$ echo $ $ $ PPID
+4812 4224
+[paul@RHEL4b ~]$ exit
+exit
+[paul@RHEL4b ~]$ echo $ $ $ PPID
+4224 4223
+[paul@RHEL4b ~]"
+
+read -p " press enter to continue" ;
+
+
+
+echo "1.2.4. fork and exec" ;
+
+echo  "A process starts another process in two phases. First the process creates a fork of itself, an
+identical copy. Then the forked process executes an exec to replace the forked process with
+the target child process.
+"
+
+echo "1.2.5. exec"
+
+echo "paul@RHEL4b ~]$ echo $ $
+4224 # PID of bash
+[paul@RHEL4b ~]$ ksh
+$ echo $ $    PPID
+5343 4224 # PID of ksh and bash
+$ exec bash
+[paul@RHEL4b ~]$ echo $ $   $ PPID
+5343 4224 # PID of bash and bash
+[paul@RHEL4b ~]$ exit
+exit
+[paul@RHEL4b ~]$ echo $ $
+4224
+read -p " press enter to continue" ;
+
+echo "1.2.6. "ps"
+
+echo "One of the most common tools on Linux to look at processes is ps. The following screenshot
+shows the parent child  
+relationship between three bash processes." 
+
+echo  "[user@RHEL4b ~]$ echo $ $ $ PPID
+4224 4223
+[user@RHEL4b ~]$ bash
+[user@RHEL4b ~]$ echo $ $ $ PPID
+4866 4224
+[user@RHEL4b ~]$ bash
+[user@RHEL4b ~]$ echo $ $ $ PPID
+4884 4866
+[user@RHEL4b ~]$ ps fx
+ PID TTY STAT TIME COMMAND
+ 4223 ? S 0:01 sshd: paul@pts/0 
+ 4224 pts/0 Ss 0:00 \_ -bash
+ 4866 pts/0 S 0:00 \_ bash
+ 4884 pts/0 S 0:00 \_ bash
+ 4902 pts/0 R+ 0:00 \_ ps fx
+[user@RHEL4b ~]$ exit
+exit
+[user@RHEL4b ~]$ ps fx
+ PID TTY STAT TIME COMMAND
+ 4223 ? S 0:01 sshd: paul@pts/0 
+ 4224 pts/0 Ss 0:00 \_ -bash
+ 4866 pts/0 S 0:00 \_ bash
+ 4903 pts/0 R+ 0:00 \_ ps fx
+[user@RHEL4b ~]$ exit
+exit
+[user@RHEL4b ~]$ ps fx
+ PID TTY STAT TIME COMMAND
+ 4223 ? S 0:01 sshd: paul@pts/0 
+ 4224 pts/0 Ss 0:00 \_ -bash
+ 4904 pts/0 R+ 0:00 \_ ps fx
+[user@RHEL4b ~"
+
+
+echo  "On Linux, ps fax is often used. On Solaris ps -ef (which also works on Linux) is common.
+Here is a partial output from ps fax."
+
+echo "[paul@RHEL4a ~]$ ps fax
+PID TTY STAT TIME COMMAND
+1 ? S 0:00 init [5]
+...
+3713 ? Ss 0:00 /usr/sbin/sshd
+5042 ? Ss 0:00 \_ sshd: paul [priv]
+5044 ? S 0:00 \_ sshd: paul@pts/1 
+5045 pts/1 Ss 0:00 \_ -bash
+5077 pts/1 R+ 0:00 \_ ps fa"
+
+
+
+
+echo  "[user@RHEL5 ~]$ sleep 1000 &
+[1] 32558
+[user@RHEL5 ~]$ pgrep sleep
+32558
+[user@RHEL5 ~]$ ps -C sleep
+ PID TTY TIME CMD
+32558 pts/3 00:00:00 sleep "
+
+echo "You can also list the command name of the process with pgrep."
+
+echo "paul@laika:~$ pgrep -l sleep
+9661 sleep"
+
+ 
+
+
+echo "1.2.8. top"
+
+
+read -p " press enter to continue" ;
+
+
+echo "Another popular tool on Linux is top. The top tool can order processes according to cpu
+usage or other properties. You can also kill processes from within top. Press h inside top
+for help.
+In case of trouble, top is often the first tool to fire up, since it also provides you memory
+and swap space information "
+
+read -p " press enter to continue" ;
+
+echo "1.3. signalling processes"
+
+echo "1.3.1. kill"
+
+echo " The kill command will kill (or stop) a process. The screenshot shows how to use a standard
+kill to stop the process with pid 1942.
+echo "
+
+echo "paul@ubuntu910:~$ kill 1942
+paul@ubuntu910:~$
+By using the kill we are sending a signal to the process "
+
+echo "1.3.2. list signals "
+
+
+echo " Running processes can receive signals from each other or from the users. You can have a
+list of signals by typing kill -l, that is a letter l, not the number 1 " 
+
+echo "[paul@RHEL4a ~]$ kill -l
+1) SIGHUP 2) SIGINT 3) SIGQUIT 4) SIGILL
+5) SIGTRAP 6) SIGABRT 7) SIGBUS 8) SIGFPE
+9) SIGKILL 10) SIGUSR1 11) SIGSEGV 12) SIGUSR2
+13) SIGPIPE 14) SIGALRM 15) SIGTERM 17) SIGCHLD
+18) SIGCONT 19) SIGSTOP 20) SIGTSTP 21) SIGTTIN
+22) SIGTTOU 23) SIGURG 24) SIGXCPU 25) SIGXFSZ
+26) SIGVTALRM 27) SIGPROF 28) SIGWINCH 29) SIGIO
+30) SIGPWR 31) SIGSYS 34) SIGRTMIN 35) SIGRTMIN+1
+36) SIGRTMIN+2 37) SIGRTMIN+3 38) SIGRTMIN+4 39) SIGRTMIN+5
+40) SIGRTMIN+6 41) SIGRTMIN+7 42) SIGRTMIN+8 43) SIGRTMIN+9
+44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13
+52) SIGRTMAX-12 53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9
+56) SIGRTMAX-8 57) SIGRTMAX-7 58) SIGRTMAX-6 59) SIGRTMAX-5
+60) SIGRTMAX-4 61) SIGRTMAX-3 62) SIGRTMAX-2 63) SIGRTMAX-1
+64) SIGRTMAX
+[paul@RHEL4a ~]$ "
+
+read -p  " press enter to continue" ;
+
+echo "3. kill -1 (SIGHUP) "
+
+echo  "It is common on Linux to use the first signal SIGHUP (or HUP or 1) to tell a process that
+it should re-read its configuration file. Thus, the kill -1 1 command forces the init process
+(init always runs with pid 1) to re-read its configuration file "
+
+echo " root@deb503:~# kill -1 1
+root@deb503:~# "
+
+echo  "It is up to the developer of the process to decide whether the process can do this running,
+or whether it needs to stop and start. It is up to the user to read the documentation of the
+program"
+ 
+ echo "1.3.4. kill -15 (SIGTERM) "  
+
+read -p  " press enter to continue"  ;
+
+echo "The SIGTERM signal is also called a standard "kill". Whenever "kill" is executed without
+specifying the signal, a "kill"   15 is assumed " 
+
+echo "Both commands in the screenshot below are identical. " ;
+
+echo  " 1.3.5. kill -9 (SIGKILL)" 
+
+
+read -p  " press enter to continue"  ;
+
+echo " 1.3.5. kill -9 (SIGKILL)" 
+
+echo "The SIGKILL is different from most other signals in that it is not being sent to the process,
+but to the Linux kernel. A kill -9 is also called a sure kill. The kernel will shoot down the
+process. As a developer you have no means to intercept a kill -9 signal."
+
+echo "user@rhel53 ~# kill -9 3342"
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
